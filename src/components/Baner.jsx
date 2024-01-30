@@ -3,7 +3,7 @@ import banner2 from "../assets/baner2.webp";
  
 const Baner = () => {
     return(
-    <div className="container">
+    <div className="container mt-5">
         <div className="row">
             <div className="col-md-6  col-sx-12 text-center">
                 <img src={banner1} alt="banaer1" />

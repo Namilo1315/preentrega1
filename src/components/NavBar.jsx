@@ -1,5 +1,6 @@
-import CartWidget from "./CartWidget"
-import Logo1 from "./logo"
+import { NavLink } from "react-router-dom";
+import CartWidget from "./CartWidget";
+import Logo1 from "./logo";
 
 const NavBar = () => {
     return (
@@ -7,7 +8,7 @@ const NavBar = () => {
             <div className="row">               
                  <nav className="navbar navbar-expand-lg ">
                     <div className="container-fluid">
-                      <a className="navbar-brand" href="#"> <Logo1/> </a>
+                      <NavLink className="navbar-brand" to={"/"}> <Logo1/> </NavLink>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                        </button>                    
@@ -15,19 +16,19 @@ const NavBar = () => {
                         <div className="col-md-9 d-flex agling-items-center justify-content-center">
                             <ul className="nav agling-items-center">
                                 <li className="nav-item">
-                                    <a className="nav-link text-dark fs-5" href="#">Inicio</a>
+                                    <NavLink className="nav-link text-dark fs-5" activeclassname="active" to={"/"}>Productos</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-dark fs-5" href="#">Lentes de Sol</a>
+                                    <NavLink className="nav-link text-dark fs-5" activeclassname="active" to={"/category/anteojosdesol"}>Anteojos de Sol</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-dark fs-5" href="#">Lentes de contacto</a>
+                                    <NavLink className="nav-link text-dark fs-5" activeclassname="active" to={"/category/lentesdecontacto"}>Lentes de Contacto</NavLink>
                                 </li>
                                 < li className="nav-item">
-                                    <a className="nav-link text-dark fs-5" href="#">Anteojos</a>
+                                    <NavLink className="nav-link text-dark fs-5" activeclassname="active" to={"/category/anteojos"}>Anteojos</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-dark fs-5" href="#">Contacto</a>
+                                    <NavLink className="nav-link text-dark fs-5" activeclassname="active" to={"/"}>Contacto</NavLink>
                                 </li>
                             </ul>
                             
@@ -45,4 +46,4 @@ const NavBar = () => {
     
     )
 }
- export default NavBar
+ export default NavBar;

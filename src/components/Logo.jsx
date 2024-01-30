@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom";
+
 
 
 const Logo = () => {
     return(
-       <img src="https://image1.cdnsbg.com/desktop/new_sbg/assets/common/sbg-logos/svg-format/desktop-logo-SmartBuyGlasses.svg?q=100" alt="logo" width={160} />
+     <Link to={"/"}>
+        <img src="https://image1.cdnsbg.com/desktop/new_sbg/assets/common/sbg-logos/svg-format/desktop-logo-SmartBuyGlasses.svg?q=100" alt="logo" width={160} />
+     </Link> 
     )
 }
-export default Logo
+export default Logo;
