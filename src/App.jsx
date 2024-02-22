@@ -12,7 +12,7 @@ import Footer from "./components/footer";
 const App =() => {
   return (   
     <CartContextProvider>
-  <BrowserRouter>
+   <BrowserRouter>
     < NavBar/>
     <Routes>
       <Route path = {"/"} element={<ItemListContainer/>} />
