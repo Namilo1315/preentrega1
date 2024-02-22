@@ -1,13 +1,13 @@
 
 import ItemListContainer from "./components/ItemListContainer";
 import NavBar from "./components/NavBar";
-import Baner from "./components/baner";
+import Baner from "./components/Baner";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import CartContextProvider from "./components/context/CartContext";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 
 const App =() => {
   return (   
