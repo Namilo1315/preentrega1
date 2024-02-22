@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+//import arrayProductos from "./json/productos.json";
+import { useEffect } from "react";
 import ItemList from "./ItemList";
-import arrayProductos from "./json/productos.json";
 import { useParams } from "react-router-dom";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+//import Loading from "./Loading";
 
 const ItemListContainer = () => {
   const [items,setItems] = useState ([]);
   const {id} = useParams();
-  
-   useEffect(() => {
+   // llamamos a json//
+
+   /*useEffect(() => {
       const promesa = new Promise (resolve => {
         setTimeout(() => {
             resolve(id ? arrayProductos.filter(item => item.categoria === id): arrayProductos);
@@ -16,14 +20,43 @@ const ItemListContainer = () => {
        promesa.then(data => {
         setItems(data);
        })
-   }, [id]);
+   }, [id]);*/
+ 
+   // esto solo una vez se ejecuta, sino se empieza a duplicar cada vez que levantemos el proyecto, por eso lo comentamos, subimos los productos//
+   
+      /*useEffect(() => {
+        const db = getFirestore();
+        const itemsCollection = collection(db, "items");
+
+        arrayProductos.forEach(producto => {
+            addDoc(itemsCollection, producto);
+        });
+
+        console.log("Los productos se subieron correctamente!");
+    }, []) 
     
+ */
+
+      // Llamamos a los Productos desde el Firestore
+    useEffect(() => {
+      const db = getFirestore();
+      const itemsCollection = collection(db, "items");
+      const consulta = id ? query(itemsCollection, where("categoria", "==", id)) : itemsCollection;
+      getDocs(consulta).then(resultado => {
+          //setLoading(false);
+          setItems(resultado.docs.map(producto => ({id:producto.id, ...producto.data()})));
+      });
+  }, [id]);
+
+
+
     return(
      <>
       <ItemList items={items}/> 
+      
      </>
 
 
     )      
 }
- export default ItemListContainer;
+ export default ItemListContainer;     

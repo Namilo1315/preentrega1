@@ -1,53 +1,55 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
+const ItemCount = ({stock, onAdd}) => {
+    const [counter, setCounter] = useState(1);
+    const [itemStock, setItemStock] = useState(stock);
+    const [itemAdded, setItemAdded] = useState(false);
 
-
-const ItemCount = ({stock}) => {
-
-    const [contador, setContador] = useState(1);
-    const [itemStock, setItemStock] = useState(stock); 
-
-    const incremtar = () => {
-        if (contador < itemStock)
-        setContador(contador + 1)
+    const incrementar = () => {
+        if (counter < itemStock) {
+            setCounter(counter + 1)
+        }
     }
 
     const decrementar = () => {
-        if (contador > 1 )
-        setContador(contador - 1)
+        if (counter > 1) {
+            setCounter(counter - 1);
+        }
     }
-   
-    const onAdd = () => {
-        if (contador <= itemStock)
-        setContador(1)
-    }
-     useEffect (() => {
-        setItemStock(stock)
-     },[stock])
 
-    return(
-        <>
-         <div className="row my-1">
-           <div className="col-md-4">
-            <div className="btn-group" role="group" aria-label="basic example">
-              <button type="button" className="btn btn-warning" onClick={decrementar}>-</button>
-              <button type="button" className="btn btn-warning" onClick={decrementar}>{contador}</button>
-              <button type="button" className="btn btn-warning" onClick={incremtar}>+</button>
-            </div>
-           </div>
-         </div>
-         <div className="row my-1">
-           <div className="col-md-5">
+    const addToCart = () => {
+        if (counter <= itemStock) {
+            setItemStock(itemStock - counter);
+            setCounter(1);
+            onAdd(counter);
+            setItemAdded(true);
             
-              <button type="button" className="btn btn-warning" onClick={onAdd}>Agregar al carrito</button>
-             
+        }
+    }
+
+    useEffect(() => {
+        setItemStock(stock)
+    }, [stock]);
+
+    return (
+        <>
+            <div className="row my-1">
+                <div className="col-md-4" >
+                    <div className="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" className="color2 p-2 fw-bold" onClick={decrementar}>-</button>
+                        <button type="button" className="color2 p-2 fw-bold">{counter}</button>
+                        <button type="button" className="color2 p-2 fw-bold" onClick={incrementar}>+</button>
+                    </div>
+                </div>
             </div>
-           </div>
-         
+            <div className="row my-3">
+                <div className="col-md-6 ">
+                    {itemAdded ? <Link to={"/cart"} className=" mt-2 color2 p-2 fw-bold ">Terminar Mi Compra</Link> : <button type="button" className="color2 p-2 fw-bold" onClick={addToCart}>Agregar al Carrito</button>}
+                </div>
+            </div>
         </>
-
-
-
     )
 }
+
 export default ItemCount;
